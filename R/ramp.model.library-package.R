@@ -1,7 +1,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
-#' @import exDE
+#' @import ramp.xde
 #' @import ramp.work
 ## usethis namespace: end
 NULL

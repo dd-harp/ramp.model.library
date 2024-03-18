@@ -1,7 +1,3 @@
-## ----echo=F, eval=F-----------------------------------------------------------
-#  devtools::load_all()
-#  devtools::load_all("../../exDE")
-
 ## -----------------------------------------------------------------------------
 model <- xde_setup(MYZname="RMG", Lname="trace", Xname = "trace", nPatches=3)
 

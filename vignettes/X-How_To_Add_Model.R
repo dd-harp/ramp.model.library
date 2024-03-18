@@ -1,7 +1,7 @@
 ## -----------------------------------------------------------------------------
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the NEW model.
-#' @inheritParams exDE::F_X
+#' @inheritParams ramp.xde::F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_X.NEW <- function(t, y, pars) {
@@ -21,7 +21,7 @@ F_X.NEW <- function(t, y, pars) {
 ## -----------------------------------------------------------------------------
 #' @title Size of effective infectious human population
 #' @description Implements [F_H] for the NEW model.
-#' @inheritParams exDE::F_H
+#' @inheritParams ramp.xde::F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_H.NEW <- function(t, y, pars) {
@@ -41,7 +41,7 @@ F_H.NEW <- function(t, y, pars) {
 ## -----------------------------------------------------------------------------
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIS model.
-#' @inheritParams exDE::F_b
+#' @inheritParams ramp.xde::F_b
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_b.NEW <- function(t, y, pars) {
@@ -61,7 +61,7 @@ F_b.NEW <- function(t, y, pars) {
 ## -----------------------------------------------------------------------------
 #' @title Derivatives for human population
 #' @description Implements [dXdt] for the NEW model, no demography.
-#' @inheritParams exDE::dXdt
+#' @inheritParams ramp.xde::dXdt
 #' @return a [numeric] vector
 #' @export
 dXdt.NEW <- function(t, y, pars, FoI) {
@@ -104,7 +104,7 @@ dXdt.NEW <- function(t, y, pars, FoI) {
 ## -----------------------------------------------------------------------------
 #' @title Setup Xpar.NEW
 #' @description Implements [setup_X] for the NEW model
-#' @inheritParams exDE::setup_X
+#' @inheritParams ramp.xde::setup_X
 #' @return a [list] vector
 #' @export
 setup_X.NEW = function(pars, Xname, Xopts=list()){
@@ -160,7 +160,7 @@ make_Xinits_NEW = function(pars, Xopts = list(), X10=1, X20=2, X30=3){with(Xopts
 ## -----------------------------------------------------------------------------
 #' @title Add indices for human population to parameter list
 #' @description Implements [make_indices_X] for the NEW model.
-#' @inheritParams exDE::make_indices_X
+#' @inheritParams ramp.xde::make_indices_X
 #' @return none
 #' @importFrom utils tail
 #' @export
@@ -180,7 +180,7 @@ make_indices_X.NEW <- function(pars) {
 
 ## -----------------------------------------------------------------------------
 #' @title Update inits for the SIS human model from a vector of states
-#' @inheritParams exDE::update_inits_X 
+#' @inheritParams ramp.xde::update_inits_X 
 #' @return none
 #' @export
 update_inits_X.NEW <- function(pars, y0) {
@@ -207,7 +207,7 @@ get_inits_X.NEW <- function(pars){
 ## -----------------------------------------------------------------------------
 #' @title Parse the output of deSolve and return variables for the NEW model
 #' @description Implements [parse_deout_X] for the NEW model
-#' @inheritParams exDE::parse_deout_X
+#' @inheritParams ramp.xde::parse_deout_X
 #' @return none
 #' @export
 parse_deout_X.NEW <- function(deout, pars) {
@@ -223,7 +223,7 @@ parse_deout_X.NEW <- function(deout, pars) {
 ## -----------------------------------------------------------------------------
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the NEW model.
-#' @inheritParams exDE::F_pr
+#' @inheritParams ramp.xde::F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pr.NEW<- function(varslist, pars) {
@@ -234,7 +234,7 @@ F_pr.NEW<- function(varslist, pars) {
 ## -----------------------------------------------------------------------------
 #' @title Compute the HTC for the NEW model
 #' @description Implements [HTC] for the NEW model with demography.
-#' @inheritParams exDE::HTC
+#' @inheritParams ramp.xde::HTC
 #' @return a [numeric] vector
 #' @export
 HTC.NEW <- function(pars) {

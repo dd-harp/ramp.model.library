@@ -44,7 +44,7 @@ split_stratum_by_biting.SIS = function(pars, i, j, p, fac){
 
   for(s in 1:pars$nVectors) pars = make_TaR(0, pars, i, 1)
 
-  pars <- exDE::make_indices(pars)
+  pars <- ramp.xde::make_indices(pars)
 
   return(pars)
 }

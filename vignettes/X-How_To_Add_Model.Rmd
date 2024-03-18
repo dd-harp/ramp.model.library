@@ -12,11 +12,11 @@ vignette: >
 
 # Required Functions
 
-The package `motrap` extends the package [`exDE,`](https://github.com/dd-harp/exDE){target="_blank"} which implements a modular, flexible, and extensible framework for building ordinary and delay differential equations models for malaria and other mosquito-transmitted pathogens. The underlying mathematics has been explained in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}
+The package `ramp.model.library`` extends the package [`ramp.xde,`](https://github.com/dd-harp/ramp.xde){target="_blank"} which implements a modular, flexible, and extensible framework for building ordinary and delay differential equations models for malaria and other mosquito-transmitted pathogens. The underlying mathematics has been explained in [Spatial Dynamics of Malaria Transmission](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1010684){target="_blank"}
 ^[Wu SL, Henry JM, Citron DT, Mbabazi Ssebuliba D, Nakakawa Nsumba J, Sánchez C. HM, et al. (2023) Spatial dynamics of malaria transmission. PLoS Comput Biol 19(6): e1010684. https://doi.org/10.1371/journal.pcbi.1010684] 
 One of the most important functions of `motrap` is to host the *model families* in the *model libraries*  for the main dynamical components. This vignette discusses how to add a new model family describing human infection dynamics and immunity.  
 
-Adding a new model to the dynamical component of class $\cal X$ -- human infection dynamics, including immunity -- follows a standard template. The `S3` class functions are defined in [human-interface.R](https://github.com/dd-harp/exDE/blob/main/R/human-interface.R){target="_blank"}, and several examples are posted in the `exDE` github repository, including the `SIS` model [human-SIS.R](https://github.com/dd-harp/exDE/blob/main/R/human-SIS.R){target="_blank"}. 
+Adding a new model to the dynamical component of class $\cal X$ -- human infection dynamics, including immunity -- follows a standard template. The `S3` class functions are defined in [human-interface.R](https://github.com/dd-harp/ramp.xde/blob/main/R/human-interface.R){target="_blank"}, and several examples are posted in the `ramp.xde` github repository, including the `SIS` model [human-SIS.R](https://github.com/dd-harp/ramp.xde/blob/main/R/human-SIS.R){target="_blank"}. 
 
 This code can serve as a template for a new model. Simply execute the following command, and start editing `Xmod-NEW.R` 
 
@@ -34,7 +34,7 @@ The following is a template for a model:
 ```{r}
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the NEW model.
-#' @inheritParams exDE::F_X
+#' @inheritParams ramp.xde::F_X
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_X.NEW <- function(t, y, pars) {
@@ -56,11 +56,11 @@ The commented code relevant code that must be changed is commented out. The pref
 
 **Example** 
 
-As an example, we include the $SIS$ model from `exDE.` In the `SIS` model, the returned value is $cX$ where prevalence is $X/H$. The constant $c$ is the probability a mosquito would become infected after blood feeding on an infected human. Two things to note: 
+As an example, we include the $SIS$ model from `ramp.xde.` In the `SIS` model, the returned value is $cX$ where prevalence is $X/H$. The constant $c$ is the probability a mosquito would become infected after blood feeding on an infected human. Two things to note: 
 
-+ First, `exDE` holds the indices by component under `pars$ix,` so `pars$ix$X` holds the index names for all the variable names. Putting them under `X` helps to avoid conflicts if, for example, another dynamical component happened to use the same variable name.  
++ First, `ramp.xde` holds the indices by component under `pars$ix,` so `pars$ix$X` holds the index names for all the variable names. Putting them under `X` helps to avoid conflicts if, for example, another dynamical component happened to use the same variable name.  
 
-+ The declaration of `inheritParams` from the `SIS` model in `exDE` works naturally. The namespace from `exDE` is needed, so our NEW function (above) has `exDE::F_X` 
++ The declaration of `inheritParams` from the `SIS` model in `ramp.xde` works naturally. The namespace from `ramp.xde` is needed, so our NEW function (above) has `ramp.xde::F_X` 
 
 ```{r, eval=F, purl=F}
 #' @title Size of effective infectious human population
@@ -82,7 +82,7 @@ The following is a template for a model:
 ```{r}
 #' @title Size of effective infectious human population
 #' @description Implements [F_H] for the NEW model.
-#' @inheritParams exDE::F_H
+#' @inheritParams ramp.xde::F_H
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_H.NEW <- function(t, y, pars) {
@@ -102,14 +102,14 @@ F_H.NEW <- function(t, y, pars) {
 
 ### `F_b`
 
-In `exDE,` we recognize the problem of translating the local EIR into the FoI. The local EIR is computed as one of the core model terms for each one of the model strata. 
+In `ramp.xde,` we recognize the problem of translating the local EIR into the FoI. The local EIR is computed as one of the core model terms for each one of the model strata. 
 
 The function `F_b` returns the model-defined probability an infective bite by a mosquito would cause an infection. This could include the combined effects of inefficient transmission, pre-erytrocytic immunity, and perhaps some effects of blood stage immunity. In a model with no effect, the return value would be $1$.  
 
 ```{r}
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIS model.
-#' @inheritParams exDE::F_b
+#' @inheritParams ramp.xde::F_b
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_b.NEW <- function(t, y, pars) {
@@ -127,7 +127,7 @@ F_b.NEW <- function(t, y, pars) {
 }
 ```
 
-Once again, we provide the `SIS` model from `exDE` as our example: 
+Once again, we provide the `SIS` model from `ramp.xde` as our example: 
 
 ```{r, purl=F, eval=F}
 #' @title Infection blocking pre-erythrocytic immunity
@@ -153,12 +153,12 @@ The style guidelines are to:
 
 + Return the derivatives as a concatenated vector  
 
-This *should* be straightforward, but there's one very important wrinkle. If you want to be able to use the `exDE` capabilities for cohort dynamics and vital dynamics, then the dynamics must be extended carefully to call the demographic matrix function `dHdt.` 
+This *should* be straightforward, but there's one very important wrinkle. If you want to be able to use the `ramp.xde` capabilities for cohort dynamics and vital dynamics, then the dynamics must be extended carefully to call the demographic matrix function `dHdt.` 
 
 ```{r}
 #' @title Derivatives for human population
 #' @description Implements [dXdt] for the NEW model, no demography.
-#' @inheritParams exDE::dXdt
+#' @inheritParams ramp.xde::dXdt
 #' @return a [numeric] vector
 #' @export
 dXdt.NEW <- function(t, y, pars, FoI) {
@@ -188,7 +188,7 @@ dXdt.NEW <- function(t, y, pars, FoI) {
 
 ### `dXdt` 
 
-In `exDE`, we write two versions of the derivatives function, to make it easy for the average user to scale up.  
+In `ramp.xde`, we write two versions of the derivatives function, to make it easy for the average user to scale up.  
 
 ```{r, purl=F}
 dXdt.SISdx <- function(t, y, pars, FoI) {
@@ -231,7 +231,7 @@ This function must set up `Xpar` and it must also set up the initial values. By 
 ```{r}
 #' @title Setup Xpar.NEW
 #' @description Implements [setup_X] for the NEW model
-#' @inheritParams exDE::setup_X
+#' @inheritParams ramp.xde::setup_X
 #' @return a [list] vector
 #' @export
 setup_X.NEW = function(pars, Xname, Xopts=list()){
@@ -335,7 +335,7 @@ make_Xinits_SIS = function(pars, Xopts = list(), X0=1){with(Xopts,{
 ```{r}
 #' @title Add indices for human population to parameter list
 #' @description Implements [make_indices_X] for the NEW model.
-#' @inheritParams exDE::make_indices_X
+#' @inheritParams ramp.xde::make_indices_X
 #' @return none
 #' @importFrom utils tail
 #' @export
@@ -374,7 +374,7 @@ make_indices_X.SIS <- function(pars) {
 
 ```{r}
 #' @title Update inits for the SIS human model from a vector of states
-#' @inheritParams exDE::update_inits_X 
+#' @inheritParams ramp.xde::update_inits_X 
 #' @return none
 #' @export
 update_inits_X.NEW <- function(pars, y0) {
@@ -428,7 +428,7 @@ get_inits_X.SIS <- function(pars){
 ```{r}
 #' @title Parse the output of deSolve and return variables for the NEW model
 #' @description Implements [parse_deout_X] for the NEW model
-#' @inheritParams exDE::parse_deout_X
+#' @inheritParams ramp.xde::parse_deout_X
 #' @return none
 #' @export
 parse_deout_X.NEW <- function(deout, pars) {
@@ -464,7 +464,7 @@ The function `F_pr` computes the models *true* prevalence using the variable nam
 ```{r}
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the NEW model.
-#' @inheritParams exDE::F_pr
+#' @inheritParams ramp.xde::F_pr
 #' @return a [numeric] vector of length `nStrata`
 #' @export
 F_pr.NEW<- function(varslist, pars) {
@@ -478,7 +478,7 @@ F_pr.NEW<- function(varslist, pars) {
 ```{r}
 #' @title Compute the HTC for the NEW model
 #' @description Implements [HTC] for the NEW model with demography.
-#' @inheritParams exDE::HTC
+#' @inheritParams ramp.xde::HTC
 #' @return a [numeric] vector
 #' @export
 HTC.NEW <- function(pars) {

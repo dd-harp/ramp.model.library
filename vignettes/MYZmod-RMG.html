@@ -10,7 +10,7 @@
 
 
 
-<meta name="date" content="2024-03-15" />
+<meta name="date" content="2024-03-18" />
 
 <title>The adult mosquito model RMG</title>
 
@@ -375,81 +375,12 @@ display: none;
 
 <h1 class="title toc-ignore">The adult mosquito model RMG</h1>
 <h3 class="subtitle">A Behavioral State Model</h3>
-<h4 class="date">March 15, 2024</h4>
+<h4 class="date">March 18, 2024</h4>
 
 </div>
 
 
-<pre><code>## Registered S3 methods overwritten by &#39;mobwork&#39;:
-##   method               from              
-##   F_H.SEIR             ramp.model.library
-##   F_H.SIR              ramp.model.library
-##   F_H.garki            ramp.model.library
-##   F_X.SEIR             ramp.model.library
-##   F_X.SIR              ramp.model.library
-##   F_X.garki            ramp.model.library
-##   F_b.SEIR             ramp.model.library
-##   F_b.SIR              ramp.model.library
-##   F_b.garki            ramp.model.library
-##   F_eggs.RMG           ramp.model.library
-##   F_fqM.RMG            ramp.model.library
-##   F_fqZ.RMG            ramp.model.library
-##   F_pr.SEIR            ramp.model.library
-##   F_pr.SIR             ramp.model.library
-##   F_pr.garki           ramp.model.library
-##   HTC.SEIR             ramp.model.library
-##   HTC.SIR              ramp.model.library
-##   HTC.garki            ramp.model.library
-##   MBionomics.RMG       ramp.model.library
-##   dMYZdt.RMG           ramp.model.library
-##   dXdt.SEIR            ramp.model.library
-##   dXdt.SIR             ramp.model.library
-##   dXdt.garki           ramp.model.library
-##   get_inits_MYZ.RMG    ramp.model.library
-##   get_inits_X.SEIR     ramp.model.library
-##   get_inits_X.SIR      ramp.model.library
-##   get_inits_X.garki    ramp.model.library
-##   make_indices_MYZ.RMG ramp.model.library
-##   make_indices_X.SEIR  ramp.model.library
-##   make_indices_X.SIR   ramp.model.library
-##   make_indices_X.garki ramp.model.library
-##   parse_deout_MYZ.RMG  ramp.model.library
-##   parse_deout_X.SEIR   ramp.model.library
-##   parse_deout_X.SIR    ramp.model.library
-##   parse_deout_X.garki  ramp.model.library
-##   setup_MYZinits.RMG   ramp.model.library
-##   setup_MYZpar.RMG     ramp.model.library
-##   setup_Xinits.SEIR    ramp.model.library
-##   setup_Xinits.SIR     ramp.model.library
-##   setup_Xinits.garki   ramp.model.library
-##   setup_Xpar.SEIR      ramp.model.library
-##   setup_Xpar.SIR       ramp.model.library
-##   setup_Xpar.garki     ramp.model.library
-##   update_inits_MYZ.RMG ramp.model.library
-##   update_inits_X.SEIR  ramp.model.library
-##   update_inits_X.SIR   ramp.model.library
-##   update_inits_X.garki ramp.model.library
-##   xde_plot_X.SEIR      ramp.model.library
-##   xde_plot_X.SIR       ramp.model.library
-##   xde_plot_X.garki     ramp.model.library</code></pre>
-<pre><code>## 
-## Attaching package: &#39;mobwork&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ramp.model.library&#39;:
-## 
-##     lines_eirVpr, lines_eirpr, make_MYZinits_RMG, make_MYZpar_RMG,
-##     make_Xinits_SEIR, make_Xinits_SIR, make_Xinits_garki,
-##     make_Xpar_SEIR, make_Xpar_SIR, make_Xpar_garki, make_inits_MYZ_RMG,
-##     make_parameters_MYZ_RMG, plot_eirVpr, plot_eirpr, pr2Lambda,
-##     split_stratum_by_biting, ssMYZ, xde_eir2ni, xde_eir2pr,
-##     xde_lines_X_SEIR, xde_lines_X_SIR, xde_lines_X_garki, xde_pr2eir,
-##     xde_pr2lambda, xde_pr2m, xde_pr2ni, xde_scaling, xde_scaling_Z,
-##     xde_scaling_eir, xde_scaling_lambda</code></pre>
-<pre><code>## The following objects are masked from &#39;package:ramp.work&#39;:
-## 
-##     lines_eirVpr, lines_eirpr, plot_eirVpr, plot_eirpr, pr2Lambda,
-##     split_stratum_by_biting, ssMYZ, xde_eir2ni, xde_eir2pr, xde_pr2eir,
-##     xde_pr2lambda, xde_pr2m, xde_pr2ni, xde_scaling, xde_scaling_Z,
-##     xde_scaling_eir, xde_scaling_lambda</code></pre>
+<pre><code>## ℹ Loading ramp.model.library</code></pre>
 <p>Most of the models developed to model malaria parasite infections in
 mosquitoes look at the <em>infection states:</em> uninfected; infected;
 or infected and infectious. A few models have been developed that track
