@@ -508,7 +508,7 @@ F_b.NEW &lt;- function(t, y, pars) {
 <code>ramp.xde</code> as our example:</p>
 <pre class="r"><code>#&#39; @title Infection blocking pre-erythrocytic immunity
 #&#39; @description Implements [F_b] for the SIS model.
-#&#39; @inheritParams F_b
+#&#39; @inheritParams ramp.xde::F_b
 #&#39; @return a [numeric] vector of length `nStrata`
 #&#39; @export
 F_b.SIS &lt;- function(y, pars) {
@@ -831,7 +831,7 @@ HTC.NEW &lt;- function(pars) {
 <h3><code>xde_plot_X</code></h3>
 <pre class="r"><code>#&#39; Plot the density of infected individuals for the NEW model
 #&#39;
-#&#39; @inheritParams xde_plot_X
+#&#39; @inheritParams ramp.xde::xde_plot_X
 #&#39; @export
 xde_plot_X.NEW = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, add_axes=TRUE){
   vars=with(pars$outputs,if(stable==TRUE){stable_orbits}else{orbits})
@@ -848,7 +848,7 @@ xde_plot_X.NEW = function(pars, clrs=&quot;black&quot;, llty=1, stable=FALSE, ad
 <h3><code>xde_lines_X</code></h3>
 <pre class="r"><code>#&#39; Add lines for the density of infected individuals for the NEW model
 #&#39;
-#&#39; @inheritParams xde_lines_X
+#&#39; @inheritParams ramp.xde::xde_lines_X
 #&#39;
 #&#39; @export
 xde_lines_X.NEW = function(XH, pars, clrs=&quot;black&quot;, llty=1){

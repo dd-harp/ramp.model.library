@@ -1,4 +1,3 @@
-## -----------------------------------------------------------------------------
 #' @title Size of effective infectious human population
 #' @description Implements [F_X] for the NEW model.
 #' @inheritParams ramp.xde::F_X
@@ -18,7 +17,8 @@ F_X.NEW <- function(t, y, pars) {
   return(X)
 }
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Size of effective infectious human population
 #' @description Implements [F_H] for the NEW model.
 #' @inheritParams ramp.xde::F_H
@@ -38,7 +38,6 @@ F_H.NEW <- function(t, y, pars) {
   return(H)
 }
 
-## -----------------------------------------------------------------------------
 #' @title Infection blocking pre-erythrocytic immunity
 #' @description Implements [F_b] for the SIS model.
 #' @inheritParams ramp.xde::F_b
@@ -58,7 +57,8 @@ F_b.NEW <- function(t, y, pars) {
   ########################
 }
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Derivatives for human population
 #' @description Implements [dXdt] for the NEW model, no demography.
 #' @inheritParams ramp.xde::dXdt
@@ -87,21 +87,21 @@ dXdt.NEW <- function(t, y, pars, FoI) {
   })
 }
 
-## ----eval=F-------------------------------------------------------------------
-#  dXdt.SISdH <- function(t, y, pars, FoI) {
-#    with(pars$Xpar, {
-#  
-#      H <- F_H(t, y, pars)
-#      X <- y[X_ix]
-#  
-#      dX <- FoI*(H - X) - r*X + dHdt(t, X, pars)
-#      dH <- Births(t, H, pars) + dHdt(t, H, pars)
-#  
-#      return(c(dX, dH))
-#    })
-#  }
 
-## -----------------------------------------------------------------------------
+
+## dXdt.SISdH <- function(t, y, pars, FoI) {
+##   with(pars$Xpar, {
+## 
+##     H <- F_H(t, y, pars)
+##     X <- y[X_ix]
+## 
+##     dX <- FoI*(H - X) - r*X + dHdt(t, X, pars)
+##     dH <- Births(t, H, pars) + dHdt(t, H, pars)
+## 
+##     return(c(dX, dH))
+##   })
+## }
+
 #' @title Setup Xpar.NEW
 #' @description Implements [setup_X] for the NEW model
 #' @inheritParams ramp.xde::setup_X
@@ -116,7 +116,8 @@ setup_X.NEW = function(pars, Xname, Xopts=list()){
   return(pars)
 }
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Make parameters for NEW human model, with defaults
 #' @param pars a [list]
 #' @param Xopts a [list] that could overwrite defaults
@@ -139,7 +140,8 @@ make_Xpar_NEW = function(pars, Xopts=list(),
     return(pars)
   })}
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Make initial values for the NEW human model, with defaults
 #' @param pars a [list]
 #' @param Xopts a [list] to overwrite defaults
@@ -157,7 +159,8 @@ make_Xinits_NEW = function(pars, Xopts = list(), X10=1, X20=2, X30=3){with(Xopts
   return(pars)
 })}
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Add indices for human population to parameter list
 #' @description Implements [make_indices_X] for the NEW model.
 #' @inheritParams ramp.xde::make_indices_X
@@ -178,7 +181,8 @@ make_indices_X.NEW <- function(pars) {
   return(pars)
 }
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Update inits for the SIS human model from a vector of states
 #' @inheritParams ramp.xde::update_inits_X 
 #' @return none
@@ -192,7 +196,8 @@ update_inits_X.NEW <- function(pars, y0) {
     return(pars)
 })}
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Return initial values as a vector
 #' @description This method dispatches on the type of `pars$Xpar`.
 #' @param pars a [list]
@@ -204,7 +209,8 @@ get_inits_X.NEW <- function(pars){
   })
 }
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Parse the output of deSolve and return variables for the NEW model
 #' @description Implements [parse_deout_X] for the NEW model
 #' @inheritParams ramp.xde::parse_deout_X
@@ -220,7 +226,8 @@ parse_deout_X.NEW <- function(deout, pars) {
     return(list(time=time, X1=X1, X2=X2, X3=X3, H=H))
 })}
 
-## -----------------------------------------------------------------------------
+
+
 #' @title Compute the "true" prevalence of infection / parasite rate
 #' @description Implements [F_pr] for the NEW model.
 #' @inheritParams ramp.xde::F_pr
@@ -231,7 +238,6 @@ F_pr.NEW<- function(varslist, pars) {
   return(pr)
 }
 
-## -----------------------------------------------------------------------------
 #' @title Compute the HTC for the NEW model
 #' @description Implements [HTC] for the NEW model with demography.
 #' @inheritParams ramp.xde::HTC
@@ -243,7 +249,6 @@ HTC.NEW <- function(pars) {
   )
 }
 
-## -----------------------------------------------------------------------------
 #' Plot the density of infected individuals for the NEW model
 #'
 #' @inheritParams ramp.xde::xde_plot_X
@@ -259,7 +264,6 @@ xde_plot_X.NEW = function(pars, clrs="black", llty=1, stable=FALSE, add_axes=TRU
   xde_lines_X(vars$XH, pars, clrs, llty)
 }
 
-## -----------------------------------------------------------------------------
 #' Add lines for the density of infected individuals for the NEW model
 #'
 #' @inheritParams ramp.xde::xde_lines_X
@@ -276,4 +280,3 @@ xde_lines_X.NEW = function(XH, pars, clrs="black", llty=1){
       }
     }
   })}
-

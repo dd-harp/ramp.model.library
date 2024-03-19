@@ -20,7 +20,7 @@ library(deSolve)
 
 # 
 
-The SIS model, as it is now called, is a simple compartmental model, first introduced by Ross. It is included in `exDE` as a base model. 
+The SIS model, as it is now called, is a simple compartmental model, first introduced by Ross. It is included in `ramp.xde`` as a base model. 
 
 ### Variables
 
